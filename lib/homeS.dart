@@ -21,13 +21,33 @@ class HomePageS extends StatefulWidget {
 }
 
 class _HomePageSState extends State<HomePageS> {
-  @override
-  void initState() {
-    addOnStart();
-    super.initState();
+  // @override
+  // void initState() {
+  //   addOnStart(snapshot);
+  //   super.initState();
+  // }
+  AsyncSnapshot<DocumentSnapshot> snapshot1;
+  dynamic data;
+  String a;
+
+  Future<dynamic> getUserProgress() async {
+    final DocumentReference document =
+        Firestore.instance.collection("users").document(widget._user.uid);
+
+    await document.get().then<dynamic>((DocumentSnapshot snapshot1) async {
+      setState(() {
+        data = snapshot1.data['admin'];
+        a = snapshot1.data['admin'];
+        print("new admin value is " + a);
+      });
+    });
   }
 
-  AsyncSnapshot<DocumentSnapshot> snapshot;
+  @override
+  void initState() {
+    addOnStart(data);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +104,7 @@ class _HomePageSState extends State<HomePageS> {
                   .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<DocumentSnapshot> snapshot) {
+                //data = snapshot.data['admin'];
                 if (snapshot.hasError) {
                   return Text('Error : ${snapshot.error}');
                 } else if (snapshot.hasData) {
@@ -96,8 +117,11 @@ class _HomePageSState extends State<HomePageS> {
     );
   }
 
-  void addOnStart() {
-    Crud().storeData(widget._user);
+  void addOnStart(dynamic data) {
+    //if (data == true)
+    Crud().storeData1(widget._user, data);
+    // else
+    //   Crud().storeData(widget._user);
   }
 
   Widget checkRole(DocumentSnapshot snapshot) {
