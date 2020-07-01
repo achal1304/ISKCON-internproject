@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 final db = Firestore.instance;
 
@@ -12,7 +13,6 @@ class Crud {
       return false;
     }
   }
-  
 
   // Future<void> addData(userData) async {
   //   if (isLoggedIn()) {
@@ -35,9 +35,6 @@ class Crud {
     return await _fireStore.collection(_collection).getDocuments();
   }
 
-
-
-
   storeData(FirebaseUser user) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
@@ -47,16 +44,44 @@ class Crud {
         'Email': user.email,
         'admin': false,
         't1': false,
-        'subscribedT1At':Timestamp.now(),
-        'subscribedT2At':Timestamp.now(),
-        'subscribedT3At':Timestamp.now(),
-        'subscribedT4At':Timestamp.now(),
+        'subscribedT1At': Timestamp.now(),
+        'subscribedT2At': Timestamp.now(),
+        'subscribedT3At': Timestamp.now(),
+        'subscribedT4At': Timestamp.now(),
         't2': false,
         't3': false,
         't4': false,
         'uid': user.uid,
         'progress': 0.25,
-        'Gender':"",
+        'Gender': "",
+        'Address': "Address",
+        'DOB': "DOB"
+      });
+      print("instance created");
+    });
+  }
+
+  storeData1(FirebaseUser user, dynamic data) async {
+    DocumentReference documentRef =
+        Firestore.instance.collection("users").document(user.uid);
+    Firestore.instance.runTransaction((transaction) async {
+      await documentRef.setData({
+        'Name': user.displayName,
+        'Email': user.email,
+        'admin': data ?? false,
+        't1': false,
+        'subscribedT1At': Timestamp.now(),
+        'subscribedT2At': Timestamp.now(),
+        'subscribedT3At': Timestamp.now(),
+        'subscribedT4At': Timestamp.now(),
+        't2': false,
+        't3': false,
+        't4': false,
+        'uid': user.uid,
+        'progress': 0.25,
+        'Gender': "Male",
+        'Address': "Address",
+        'DOB': "DOB"
       });
       print("instance created");
     });
@@ -107,7 +132,11 @@ class Crud {
     );
   }
 
-  addVideoUrl(String url, bool isLive, /*bool showIcon*/) async {
+  addVideoUrl(
+    String url,
+    bool isLive,
+    /*bool showIcon*/
+  ) async {
     DocumentReference documentRef =
         Firestore.instance.collection("video").document("videoUrl");
     Firestore.instance.runTransaction(
@@ -121,6 +150,7 @@ class Crud {
       },
     );
   }
+
   showIcon(bool isLive) async {
     DocumentReference documentRef =
         Firestore.instance.collection("video").document("videoUrl");
@@ -145,7 +175,8 @@ class Crud {
       print("subscribedT1Date Updated");
     });
   }
-    updateT2Date(FirebaseUser user, Timestamp sdate) async {
+
+  updateT2Date(FirebaseUser user, Timestamp sdate) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
     Firestore.instance.runTransaction((transaction) async {
@@ -155,7 +186,8 @@ class Crud {
       // print("subscribedT1Date Updated");
     });
   }
-    updateT3Date(FirebaseUser user, Timestamp s3date) async {
+
+  updateT3Date(FirebaseUser user, Timestamp s3date) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
     Firestore.instance.runTransaction((transaction) async {
@@ -165,7 +197,8 @@ class Crud {
       // print("subscribedT1Date Updated");
     });
   }
-    updateT4Date(FirebaseUser user, Timestamp sdate) async {
+
+  updateT4Date(FirebaseUser user, Timestamp sdate) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
     Firestore.instance.runTransaction((transaction) async {
@@ -306,6 +339,7 @@ class Crud {
       print("subscription t1 Updated");
     });
   }
+
   updateT2(FirebaseUser user, bool val) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
@@ -316,6 +350,7 @@ class Crud {
       print("subscription t2 Updated");
     });
   }
+
   updateT3(FirebaseUser user, bool val) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
@@ -326,6 +361,7 @@ class Crud {
       print("subscription t3 Updated");
     });
   }
+
   updateT4(FirebaseUser user, bool val) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);

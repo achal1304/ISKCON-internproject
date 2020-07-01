@@ -35,33 +35,33 @@ class _EditProfileState extends State<EditProfile> {
   int id = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Item selectedGender;
-  List<Item> genders = <Item>[
-    const Item(
-      'Male',
-      FaIcon(
-        FontAwesomeIcons.mars,
-        color: Colors.blue,
-      ),
-    ),
-    const Item(
-        'Female',
-        FaIcon(
-          FontAwesomeIcons.venus,
-          color: Colors.pink,
-        )),
-    const Item(
-        'Other',
-        FaIcon(
-          FontAwesomeIcons.transgender,
-          color: Colors.purple,
-        )),
-    const Item(
-        'Prefer not to specify',
-        FaIcon(
-          FontAwesomeIcons.genderless,
-          color: Colors.grey,
-        )),
-  ];
+  // List<Item> genders = <Item>[
+  //   const Item(
+  //     'Male',
+  //     FaIcon(
+  //       FontAwesomeIcons.mars,
+  //       color: Colors.blue,
+  //     ),
+  //   ),
+  //   const Item(
+  //       'Female',
+  //       FaIcon(
+  //         FontAwesomeIcons.venus,
+  //         color: Colors.pink,
+  //       )),
+  //   const Item(
+  //       'Other',
+  //       FaIcon(
+  //         FontAwesomeIcons.transgender,
+  //         color: Colors.purple,
+  //       )),
+  //   const Item(
+  //       'Prefer not to specify',
+  //       FaIcon(
+  //         FontAwesomeIcons.genderless,
+  //         color: Colors.grey,
+  //       )),
+  // ];
 
   FirebaseUser user;
 
@@ -268,7 +268,7 @@ class _EditProfileState extends State<EditProfile> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-             Padding(
+            Padding(
               padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
               child: TextFormField(
                 controller: name,
@@ -391,7 +391,7 @@ class _EditProfileState extends State<EditProfile> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                   prefixIcon: Icon(Icons.cake),
-                  hintText: data['DOB'],
+                  hintText: "DOB :" + data['DOB'],
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Colors.blueAccent, width: 32.0),
@@ -408,7 +408,10 @@ class _EditProfileState extends State<EditProfile> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
-            Text("Gender : " + data['Gender']),
+            if (data['Gender'] == null)
+              Text("Gender :")
+            else
+              Text("Gender : " + data['Gender']),
             Column(
               children: <Widget>[
                 // Padding(
