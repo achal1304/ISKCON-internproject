@@ -35,6 +35,7 @@ class _EditProfileState extends State<EditProfile> {
   int id = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Item selectedGender;
+  // var arr = [false, false, false, false];
   // List<Item> genders = <Item>[
   //   const Item(
   //     'Male',
@@ -69,8 +70,8 @@ class _EditProfileState extends State<EditProfile> {
   String uname;
   String uaddress;
   String gender = "";
-  double progress;
-  String progressPercent;
+  double progress = 0.25;
+  String progressPercent = "25%";
 
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   static SharedPreferences _sharedPreferences;
@@ -80,18 +81,51 @@ class _EditProfileState extends State<EditProfile> {
     return usr;
   }
 
-  loadProgressValue() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  // loadProgressValue() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     progress = (prefs.getDouble('progress')) ?? 0.25;
+  //     // progress = data['progress'] ?? 0.25;
+  //     progressPercent = (prefs.getString('percent')) ?? '25%';
+  //   });
+  // }
+
+  // saveProgressValue() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   setState(() {
+  //     prefs.setDouble('progress', progress);
+  //     if (progress == 0.25) {
+  //       progressPercent = "25%";
+  //     } else if (progress == 0.5) {
+  //       progressPercent = "50%";
+  //     } else if (progress == 0.75) {
+  //       progressPercent = "75%";
+  //     } else if (progress == 1.0) {
+  //       progressPercent = "100%";
+  //     }
+  //     prefs.setString('percent', progressPercent);
+  //   });
+  // }
+  double saveProgressValue(var arr) {
     setState(() {
-      progress = (prefs.getDouble('progress')) ?? 0.25;
-      progressPercent = (prefs.getString('percent')) ?? '25%';
+      if (arr[0] == true) {
+        progress = 0.25;
+      }
+      if (arr[1] == true) {
+        progress += 0.25;
+      }
+      if (arr[2] == true) {
+        progress += 0.25;
+      }
+      if (arr[3] == true) {
+        progress += 0.25;
+      }
     });
+    return progress;
   }
 
-  saveProgressValue() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  String savePercentValue(double progress) {
     setState(() {
-      prefs.setDouble('progress', progress);
       if (progress == 0.25) {
         progressPercent = "25%";
       } else if (progress == 0.5) {
@@ -101,8 +135,8 @@ class _EditProfileState extends State<EditProfile> {
       } else if (progress == 1.0) {
         progressPercent = "100%";
       }
-      prefs.setString('percent', progressPercent);
     });
+    return progressPercent;
   }
 
   dynamic data;
@@ -118,62 +152,77 @@ class _EditProfileState extends State<EditProfile> {
     });
   }
 
-  checkAndUpdate() {
+  checkAndUpdate() async {
     uname = name.text;
     uaddress = address.text;
+    progress = data['progress'];
+    var arr = data['ARR'];
 
     if (dob.isNotEmpty) {
       Crud().updateDOB(user, dob);
-      setState(() {
-        if (progress < 1.0) progress += 0.25;
-        saveProgressValue();
-        if (progress == 0.25) {
-          progressPercent = "25%";
-        } else if (progress == 0.5) {
-          progressPercent = "50%";
-        } else if (progress == 0.75) {
-          progressPercent = "75%";
-        } else if (progress == 1.0) {
-          progressPercent = "100%";
-        }
-      });
+      if (arr[1] == false)
+        // setState(() {
+        //   if (progress < 1.0) progress += 0.25;
+        //   saveProgressValue();
+        //   if (progress == 0.25) {
+        //     progressPercent = "25%";
+        //   } else if (progress == 0.5) {
+        //     progressPercent = "50%";
+        //   } else if (progress == 0.75) {
+        //     progressPercent = "75%";
+        //   } else if (progress == 1.0) {
+        //     progressPercent = "100%";
+        //   }
+        arr[1] = true;
+      // });
     }
     if (uname.isNotEmpty) {
       Crud().updateName(user, uname);
     }
     if (uaddress.isNotEmpty) {
       Crud().updateAddress(user, uaddress);
-      setState(() {
-        if (progress < 1.0) progress += 0.25;
-        saveProgressValue();
-        if (progress == 0.25) {
-          progressPercent = "25%";
-        } else if (progress == 0.5) {
-          progressPercent = "50%";
-        } else if (progress == 0.75) {
-          progressPercent = "75%";
-        } else if (progress == 1.0) {
-          progressPercent = "100%";
-        }
-      });
+      if (arr[1] == false)
+        // setState(() {
+        //   if (progress < 1.0) progress += 0.25;
+        //   saveProgressValue();
+        //   if (progress == 0.25) {
+        //     progressPercent = "25%";
+        //   } else if (progress == 0.5) {
+        //     progressPercent = "50%";
+        //   } else if (progress == 0.75) {
+        //     progressPercent = "75%";
+        //   } else if (progress == 1.0) {
+        //     progressPercent = "100%";
+        //   }
+        arr[1] = true;
+      // });
     }
     if (radioButtonItem.isNotEmpty) {
       Crud().updateGender(user, radioButtonItem);
-      setState(() {
-        if (progress < 1.0) progress += 0.25;
-        saveProgressValue();
-        if (progress == 0.25) {
-          progressPercent = "25%";
-        } else if (progress == 0.5) {
-          progressPercent = "50%";
-        } else if (progress == 0.75) {
-          progressPercent = "75%";
-        } else if (progress == 1.0) {
-          progressPercent = "100%";
-        }
-      });
+      if (arr[2] == false)
+        // setState(() {
+        //   if (progress < 1.0) progress += 0.25;
+        //   saveProgressValue();
+        //   if (progress == 0.25) {
+        //     progressPercent = "25%";
+        //   } else if (progress == 0.5) {
+        //     progressPercent = "50%";
+        //   } else if (progress == 0.75) {
+        //     progressPercent = "75%";
+        //   } else if (progress == 1.0) {
+        //     progressPercent = "100%";
+        //   }
+        arr[2] = true;
+      // });
     }
-    Crud().updateProgress(user, progress.toString());
+    setState(() {
+      progress = saveProgressValue(arr);
+      progressPercent = savePercentValue(progress);
+    });
+
+    Crud().updateProgress(user, progress);
+    Crud().updateProgressPercent(user, progressPercent);
+    Crud().updateArr(user, arr);
   }
 
   List<bool> _list = [false, false, false, false];
@@ -186,10 +235,11 @@ class _EditProfileState extends State<EditProfile> {
       });
     });
     // getUserProgress();
-    loadProgressValue();
-    getUserProgress();
 
-    // progress = double.parse(data['progress']);
+    getUserProgress();
+    // loadProgressValue();
+
+    //progress = double.parse(data['progress']);
     if (progress == 0.25) {
       progressPercent = "25%";
     } else if (progress == 0.5) {
@@ -207,7 +257,8 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-    //progress = double.parse(data['progress']);
+    progress = data['progress'];
+    progressPercent = data['progressPercent'];
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -573,7 +624,7 @@ class _EditProfileState extends State<EditProfile> {
                   uname = name.text;
                   uaddress = address.text;
                   checkAndUpdate();
-                  getUserProgress();
+                  //getUserProgress();
                   // if (dob.isNotEmpty) {
                   //   Crud().updateDOB(user, dob);
                   //   progress += 0.25;
