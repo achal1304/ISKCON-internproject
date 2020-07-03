@@ -79,9 +79,11 @@ class Crud {
         't4': false,
         'uid': user.uid,
         'progress': 0.25,
-        'Gender': "Male",
+        'progressPercent': "25%",
+        'Gender': "",
         'Address': "Address",
-        'DOB': "DOB"
+        'DOB': "DOB",
+        'ARR': [true, false, false, false]
       });
       print("instance created");
     });
@@ -306,6 +308,18 @@ class Crud {
     });
   }
 
+  updateArr(FirebaseUser user, var arr) async {
+    DocumentReference documentRef =
+        Firestore.instance.collection("users").document(user.uid);
+    Firestore.instance.runTransaction((transaction) async {
+      await documentRef.updateData({
+        'ARR': arr,
+        // 'Phone': user.phoneNumber,
+      });
+      print("Array Updated");
+    });
+  }
+
   updateGender(FirebaseUser user, String gender) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
@@ -318,14 +332,25 @@ class Crud {
     });
   }
 
-  updateProgress(FirebaseUser user, String progress) async {
+  updateProgress(FirebaseUser user, double progress) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
     Firestore.instance.runTransaction((transaction) async {
       await documentRef.updateData({
         'progress': progress,
       });
-      print("Gender Updated");
+      print("progress Updated");
+    });
+  }
+
+  updateProgressPercent(FirebaseUser user, String progresspercent) async {
+    DocumentReference documentRef =
+        Firestore.instance.collection("users").document(user.uid);
+    Firestore.instance.runTransaction((transaction) async {
+      await documentRef.updateData({
+        'progressPercent': progresspercent,
+      });
+      print("progress percent Updated");
     });
   }
 
