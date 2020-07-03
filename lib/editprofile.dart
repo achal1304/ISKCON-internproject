@@ -35,10 +35,7 @@ class _EditProfileState extends State<EditProfile> {
   int id = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Item selectedGender;
-<<<<<<< HEAD
   // var arr = [false, false, false, false];
-=======
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
   // List<Item> genders = <Item>[
   //   const Item(
   //     'Male',
@@ -73,13 +70,8 @@ class _EditProfileState extends State<EditProfile> {
   String uname;
   String uaddress;
   String gender = "";
-<<<<<<< HEAD
   double progress = 0.25;
   String progressPercent = "25%";
-=======
-  double progress;
-  String progressPercent;
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
 
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   static SharedPreferences _sharedPreferences;
@@ -89,7 +81,6 @@ class _EditProfileState extends State<EditProfile> {
     return usr;
   }
 
-<<<<<<< HEAD
   // loadProgressValue() async {
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
   //   setState(() {
@@ -135,20 +126,6 @@ class _EditProfileState extends State<EditProfile> {
 
   String savePercentValue(double progress) {
     setState(() {
-=======
-  loadProgressValue() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      progress = (prefs.getDouble('progress')) ?? 0.25;
-      progressPercent = (prefs.getString('percent')) ?? '25%';
-    });
-  }
-
-  saveProgressValue() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      prefs.setDouble('progress', progress);
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
       if (progress == 0.25) {
         progressPercent = "25%";
       } else if (progress == 0.5) {
@@ -158,13 +135,8 @@ class _EditProfileState extends State<EditProfile> {
       } else if (progress == 1.0) {
         progressPercent = "100%";
       }
-<<<<<<< HEAD
     });
     return progressPercent;
-=======
-      prefs.setString('percent', progressPercent);
-    });
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
   }
 
   dynamic data;
@@ -180,7 +152,6 @@ class _EditProfileState extends State<EditProfile> {
     });
   }
 
-<<<<<<< HEAD
   checkAndUpdate() async {
     uname = name.text;
     uaddress = address.text;
@@ -204,34 +175,12 @@ class _EditProfileState extends State<EditProfile> {
         //   }
         arr[1] = true;
       // });
-=======
-  checkAndUpdate() {
-    uname = name.text;
-    uaddress = address.text;
-
-    if (dob.isNotEmpty) {
-      Crud().updateDOB(user, dob);
-      setState(() {
-        if (progress < 1.0) progress += 0.25;
-        saveProgressValue();
-        if (progress == 0.25) {
-          progressPercent = "25%";
-        } else if (progress == 0.5) {
-          progressPercent = "50%";
-        } else if (progress == 0.75) {
-          progressPercent = "75%";
-        } else if (progress == 1.0) {
-          progressPercent = "100%";
-        }
-      });
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
     }
     if (uname.isNotEmpty) {
       Crud().updateName(user, uname);
     }
     if (uaddress.isNotEmpty) {
       Crud().updateAddress(user, uaddress);
-<<<<<<< HEAD
       if (arr[2] == false)
         // setState(() {
         //   if (progress < 1.0) progress += 0.25;
@@ -274,39 +223,6 @@ class _EditProfileState extends State<EditProfile> {
     Crud().updateProgress(user, progress);
     Crud().updateProgressPercent(user, progressPercent);
     Crud().updateArr(user, arr);
-=======
-      setState(() {
-        if (progress < 1.0) progress += 0.25;
-        saveProgressValue();
-        if (progress == 0.25) {
-          progressPercent = "25%";
-        } else if (progress == 0.5) {
-          progressPercent = "50%";
-        } else if (progress == 0.75) {
-          progressPercent = "75%";
-        } else if (progress == 1.0) {
-          progressPercent = "100%";
-        }
-      });
-    }
-    if (radioButtonItem.isNotEmpty) {
-      Crud().updateGender(user, radioButtonItem);
-      setState(() {
-        if (progress < 1.0) progress += 0.25;
-        saveProgressValue();
-        if (progress == 0.25) {
-          progressPercent = "25%";
-        } else if (progress == 0.5) {
-          progressPercent = "50%";
-        } else if (progress == 0.75) {
-          progressPercent = "75%";
-        } else if (progress == 1.0) {
-          progressPercent = "100%";
-        }
-      });
-    }
-    Crud().updateProgress(user, progress.toString());
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
   }
 
   List<bool> _list = [false, false, false, false];
@@ -319,18 +235,11 @@ class _EditProfileState extends State<EditProfile> {
       });
     });
     // getUserProgress();
-<<<<<<< HEAD
 
     getUserProgress();
     // loadProgressValue();
 
     //progress = double.parse(data['progress']);
-=======
-    loadProgressValue();
-    getUserProgress();
-
-    // progress = double.parse(data['progress']);
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
     if (progress == 0.25) {
       progressPercent = "25%";
     } else if (progress == 0.5) {
@@ -348,12 +257,8 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     progress = data['progress'];
     progressPercent = data['progressPercent'];
-=======
-    //progress = double.parse(data['progress']);
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -719,11 +624,7 @@ class _EditProfileState extends State<EditProfile> {
                   uname = name.text;
                   uaddress = address.text;
                   checkAndUpdate();
-<<<<<<< HEAD
                   //getUserProgress();
-=======
-                  getUserProgress();
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
                   // if (dob.isNotEmpty) {
                   //   Crud().updateDOB(user, dob);
                   //   progress += 0.25;
@@ -745,10 +646,6 @@ class _EditProfileState extends State<EditProfile> {
                       duration: Duration(seconds: 3),
                     ),
                   );
-<<<<<<< HEAD
-
-=======
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
                   //Navigator.pop(context);
                 },
                 text: "Update Profile",

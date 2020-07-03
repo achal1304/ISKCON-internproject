@@ -53,17 +53,11 @@ class Crud {
         't4': false,
         'uid': user.uid,
         'progress': 0.25,
-<<<<<<< HEAD
         'progressPercent': "25%",
         'Gender': "",
         'Address': "Address",
         'DOB': "DOB",
         'ARR': [true, false, false, false]
-=======
-        'Gender': "",
-        'Address': "Address",
-        'DOB': "DOB"
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
       });
       print("instance created");
     });
@@ -87,17 +81,11 @@ class Crud {
         't4': false,
         'uid': user.uid,
         'progress': 0.25,
-<<<<<<< HEAD
         'progressPercent': "25%",
         'Gender': "",
         'Address': "Address",
         'DOB': "DOB",
         'ARR': [true, false, false, false]
-=======
-        'Gender': "Male",
-        'Address': "Address",
-        'DOB': "DOB"
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
       });
       print("instance created");
     });
@@ -322,7 +310,6 @@ class Crud {
     });
   }
 
-<<<<<<< HEAD
   updateArr(FirebaseUser user, var arr) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
@@ -335,8 +322,6 @@ class Crud {
     });
   }
 
-=======
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
   updateGender(FirebaseUser user, String gender) async {
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
@@ -349,18 +334,13 @@ class Crud {
     });
   }
 
-<<<<<<< HEAD
   updateProgress(FirebaseUser user, double progress) async {
-=======
-  updateProgress(FirebaseUser user, String progress) async {
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
     DocumentReference documentRef =
         Firestore.instance.collection("users").document(user.uid);
     Firestore.instance.runTransaction((transaction) async {
       await documentRef.updateData({
         'progress': progress,
       });
-<<<<<<< HEAD
       print("progress Updated");
     });
   }
@@ -373,9 +353,6 @@ class Crud {
         'progressPercent': progresspercent,
       });
       print("progress percent Updated");
-=======
-      print("Gender Updated");
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
     });
   }
 

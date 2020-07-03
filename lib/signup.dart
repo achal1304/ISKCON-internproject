@@ -1,18 +1,11 @@
-<<<<<<< HEAD
 import 'package:cloud_firestore/cloud_firestore.dart';
-=======
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/fa_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:random_color/random_color.dart';
-<<<<<<< HEAD
 import 'existancecheck.dart';
-=======
-
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
 import 'homeS.dart';
 import 'crud.dart';
 
@@ -104,7 +97,6 @@ class _SignupState extends State<Signup> {
     return user;
   }
 
-<<<<<<< HEAD
   static Future<bool> checkExist(String docID) async {
     bool exist = false;
     try {
@@ -155,25 +147,5 @@ class _SignupState extends State<Signup> {
         );
       }
     });
-=======
-  void onGoogleSignIn(BuildContext context) async {
-    FirebaseUser user = await _handleSignIn();
-    Crud().getData().then((val) {
-      if (val.documents.length > 0) {
-        print(val.documents[user.uid].data["admin"]);
-      } else {
-        print("Not Found");
-      }
-    });
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => HomePageS(
-          user,
-          _googleSignIn,
-        ),
-      ),
-    );
->>>>>>> 34f4205456f8d087f1a7f71de9fb2ef3e79ec968
   }
 }
