@@ -181,7 +181,11 @@ class _EditProfileState extends State<EditProfile> {
     }
     if (uaddress.isNotEmpty) {
       Crud().updateAddress(user, uaddress);
+<<<<<<< HEAD
       if (arr[2] == false)
+=======
+      if (arr[1] == false)
+>>>>>>> 24c440801e21ffd576e317a6189539778b6312f9
         // setState(() {
         //   if (progress < 1.0) progress += 0.25;
         //   saveProgressValue();
@@ -194,12 +198,20 @@ class _EditProfileState extends State<EditProfile> {
         //   } else if (progress == 1.0) {
         //     progressPercent = "100%";
         //   }
+<<<<<<< HEAD
         arr[2] = true;
+=======
+        arr[1] = true;
+>>>>>>> 24c440801e21ffd576e317a6189539778b6312f9
       // });
     }
     if (radioButtonItem.isNotEmpty) {
       Crud().updateGender(user, radioButtonItem);
+<<<<<<< HEAD
       if (arr[3] == false)
+=======
+      if (arr[2] == false)
+>>>>>>> 24c440801e21ffd576e317a6189539778b6312f9
         // setState(() {
         //   if (progress < 1.0) progress += 0.25;
         //   saveProgressValue();
@@ -212,7 +224,11 @@ class _EditProfileState extends State<EditProfile> {
         //   } else if (progress == 1.0) {
         //     progressPercent = "100%";
         //   }
+<<<<<<< HEAD
         arr[3] = true;
+=======
+        arr[2] = true;
+>>>>>>> 24c440801e21ffd576e317a6189539778b6312f9
       // });
     }
     setState(() {
