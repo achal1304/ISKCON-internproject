@@ -37,10 +37,10 @@ class NormalUsers extends StatefulWidget {
 }
 
 class _NormalUsersState extends State<NormalUsers> {
-  Timestamp t1Date =new  Timestamp.now();
-  Timestamp t2Date =new  Timestamp.now();
-  Timestamp t3Date =new  Timestamp.now();
-  Timestamp t4Date =new  Timestamp.now(); 
+  Timestamp t1Date = new Timestamp.now();
+  Timestamp t2Date = new Timestamp.now();
+  Timestamp t3Date = new Timestamp.now();
+  Timestamp t4Date = new Timestamp.now();
 
   var arr = [false, false, false, false];
   List<Widget> list = new List<Widget>();
@@ -365,14 +365,14 @@ class _NormalUsersState extends State<NormalUsers> {
                 if (snapshot.hasError) {
                   return Text('Error : ${snapshot.error}');
                 } else if (snapshot.hasData) {
-                  t1Date = snapshot.data['subscribedT1At']; 
-                  t2Date = snapshot.data['subscribedT2At'];  
-                  t4Date = snapshot.data['subscribedT4At'];  
-                 t3Date = snapshot.data['subscribedT3At'];    
+                  // t1Date = snapshot.data['subscribedT1At'];
+                  t2Date = snapshot.data['subscribedT2At'];
+                  t4Date = snapshot.data['subscribedT4At'];
+                  t3Date = snapshot.data['subscribedT3At'];
                   List<bool> t = checksub(snapshot.data);
-                  print(t.length);
+                  //  print(t.length);
                   print(t);
-                  return showEvents(t);
+                  return showEvents(t, snapshot);
                 }
                 return LinearProgressIndicator();
               }),
@@ -402,10 +402,10 @@ class _NormalUsersState extends State<NormalUsers> {
     return arr;
   }
 
-  Widget showEvents(List<bool> t) {
+  Widget showEvents(List<bool> t, AsyncSnapshot<DocumentSnapshot> snapshot) {
     return Column(
       children: <Widget>[
-        if (t[0] == true) sss1(),
+        if (t[0] == true) sss1(snapshot),
         if (t[1] == true) sss2(),
         if (t[2] == true) sss3(),
         if (t[3] == true) sss4(),
@@ -441,7 +441,7 @@ class _NormalUsersState extends State<NormalUsers> {
     // ));
   }
 
-  Widget sss1() {
+  Widget sss1(AsyncSnapshot<DocumentSnapshot> snapshot1) {
     return Expanded(
         child: Column(children: <Widget>[
       Container(
@@ -452,7 +452,8 @@ class _NormalUsersState extends State<NormalUsers> {
           stream: Firestore.instance
               .collection('notifications')
               .where('Category', isEqualTo: 't1')
-              .where('createdAt', isLessThanOrEqualTo: t1Date )
+              .where('createdAt',
+                  isGreaterThanOrEqualTo: snapshot1.data['subscribedT1At'])
               .orderBy('createdAt', descending: true)
               .snapshots(),
           builder:
@@ -501,7 +502,7 @@ class _NormalUsersState extends State<NormalUsers> {
           stream: Firestore.instance
               .collection('notifications')
               .where('Category', isEqualTo: 't2')
-              .where('createdAt', isLessThanOrEqualTo: t2Date )
+              .where('createdAt', isGreaterThanOrEqualTo: t2Date)
               .orderBy('createdAt', descending: true)
               .snapshots(),
           builder:
@@ -539,7 +540,7 @@ class _NormalUsersState extends State<NormalUsers> {
     ]));
   }
 
-Widget sss3() {
+  Widget sss3() {
     return Expanded(
         child: Column(children: <Widget>[
       Container(
@@ -550,7 +551,7 @@ Widget sss3() {
           stream: Firestore.instance
               .collection('notifications')
               .where('Category', isEqualTo: 't3')
-              .where('createdAt', isLessThanOrEqualTo: t3Date)
+              .where('createdAt', isGreaterThanOrEqualTo: t3Date)
               .orderBy('createdAt', descending: true)
               .snapshots(),
           builder:
@@ -599,7 +600,7 @@ Widget sss3() {
           stream: Firestore.instance
               .collection('notifications')
               .where('Category', isEqualTo: 't4')
-              .where('createdAt', isLessThanOrEqualTo: t4Date )
+              .where('createdAt', isGreaterThanOrEqualTo: t4Date)
               .orderBy('createdAt', descending: true)
               .snapshots(),
           builder:

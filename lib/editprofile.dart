@@ -257,8 +257,8 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-    progress = data['progress'];
-    progressPercent = data['progressPercent'];
+    // progress = data['progress'];
+    // progressPercent = data['progressPercent'];
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -286,27 +286,63 @@ class _EditProfileState extends State<EditProfile> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Container(
-              padding: EdgeInsets.only(
-                left: MediaQuery.of(context).size.width * 0.08,
-              ),
-              child: GFProgressBar(
-                percentage: progress < 1.0 ? progress : 1.0,
-                lineHeight: 20,
-                animation: true,
+            StreamBuilder<DocumentSnapshot>(
+                stream: Firestore.instance
+                    .collection('users')
+                    .document(widget._user.uid)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<DocumentSnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Error : ${snapshot.error}');
+                  } else if (snapshot.hasData) {
+                    progress = snapshot.data['progress'];
+                    progressPercent = snapshot.data['progressPercent'];
+                    return Container(
+                      padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.08,
+                      ),
+                      child: GFProgressBar(
+                        percentage: progress < 1.0 ? progress : 1.0,
+                        lineHeight: 20,
+                        animation: true,
 
-                //padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
-                alignment: MainAxisAlignment.spaceBetween,
-                child: Text(
-                  progressPercent,
-                  textAlign: TextAlign.end,
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                ),
-                backgroundColor: Colors.black26,
-                progressBarColor: Colors.blueAccent,
-                width: MediaQuery.of(context).size.width * 0.8,
-              ),
-            ),
+                        //padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                        alignment: MainAxisAlignment.spaceBetween,
+                        child: Text(
+                          progressPercent,
+                          textAlign: TextAlign.end,
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                        backgroundColor: Colors.black26,
+                        progressBarColor: Colors.blueAccent,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                      ),
+                    );
+                  }
+                }),
+
+            // Container(
+            //   padding: EdgeInsets.only(
+            //     left: MediaQuery.of(context).size.width * 0.08,
+            //   ),
+            //   child: GFProgressBar(
+            //     percentage: progress < 1.0 ? progress : 1.0,
+            //     lineHeight: 20,
+            //     animation: true,
+
+            //     //padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+            //     alignment: MainAxisAlignment.spaceBetween,
+            //     child: Text(
+            //       progressPercent,
+            //       textAlign: TextAlign.end,
+            //       style: TextStyle(fontSize: 16, color: Colors.white),
+            //     ),
+            //     backgroundColor: Colors.black26,
+            //     progressBarColor: Colors.blueAccent,
+            //     width: MediaQuery.of(context).size.width * 0.8,
+            //   ),
+            // ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
