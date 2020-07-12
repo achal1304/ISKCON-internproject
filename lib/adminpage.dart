@@ -63,8 +63,6 @@ class _AdminPageState extends State<AdminPage> {
   //var topic;
   String imgUrl = "";
 
-  
-
   final _fKey = GlobalKey<FormState>();
 
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
@@ -210,113 +208,113 @@ class _AdminPageState extends State<AdminPage> {
                                 },
                               ),
                               SizedBox(height: 15),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Text('Category: '),
-                                  FlatButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0)),
-                                    //elevation: 4.0,
-                                    onPressed: () {
-                                      showModalBottomSheet(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return Container(
-                                              height: 200,
-                                              color: Colors.white,
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  CupertinoButton(
-                                                    child: Text("Cancel"),
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                  ),
-                                                  Expanded(
-                                                    child: CupertinoPicker(
-                                                      itemExtent: 32,
-                                                      scrollController:
-                                                          new FixedExtentScrollController(
-                                                        initialItem:
-                                                            _selectedNumber,
-                                                      ),
-                                                      backgroundColor:
-                                                          Colors.white,
-                                                      onSelectedItemChanged:
-                                                          (int index) {
-                                                        _changedNumber = index;
-                                                      },
-                                                      children:
-                                                          List<Widget>.generate(
-                                                              topics.length,
-                                                              (int idx) {
-                                                        return Center(
-                                                          child: new Text(
-                                                              topics[idx]),
-                                                        );
-                                                      }),
-                                                    ),
-                                                  ),
-                                                  CupertinoButton(
-                                                      child: Text("Ok"),
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          _selectedNumber =
-                                                              _changedNumber;
-                                                          category = topics[
-                                                              _selectedNumber];
-                                                        });
-                                                        Navigator.pop(context);
-                                                        print(category);
-                                                      }),
-                                                ],
-                                              ),
-                                            );
-                                          });
-                                    },
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      height: 50.0,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Row(
-                                            children: <Widget>[
-                                              Container(
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      " $category",
-                                                      style: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 15.0),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          // Text(
-                                          //   "  Change",
-                                          //   style: TextStyle(
-                                          //       color: Colors.teal,
-                                          //       fontWeight: FontWeight.bold,
-                                          //       fontSize: 15.0),
-                                          // ),
-                                        ],
-                                      ),
-                                    ),
-                                    color: Colors.white,
-                                  ),
-                                ],
-                              ),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.start,
+                              //   children: <Widget>[
+                              //     Text('Category: '),
+                              //     FlatButton(
+                              //       shape: RoundedRectangleBorder(
+                              //           borderRadius:
+                              //               BorderRadius.circular(5.0)),
+                              //       //elevation: 4.0,
+                              //       onPressed: () {
+                              //         showModalBottomSheet(
+                              //             context: context,
+                              //             builder: (BuildContext context) {
+                              //               return Container(
+                              //                 height: 200,
+                              //                 color: Colors.white,
+                              //                 child: Row(
+                              //                   crossAxisAlignment:
+                              //                       CrossAxisAlignment.start,
+                              //                   children: <Widget>[
+                              //                     CupertinoButton(
+                              //                       child: Text("Cancel"),
+                              //                       onPressed: () {
+                              //                         Navigator.pop(context);
+                              //                       },
+                              //                     ),
+                              //                     Expanded(
+                              //                       child: CupertinoPicker(
+                              //                         itemExtent: 32,
+                              //                         scrollController:
+                              //                             new FixedExtentScrollController(
+                              //                           initialItem:
+                              //                               _selectedNumber,
+                              //                         ),
+                              //                         backgroundColor:
+                              //                             Colors.white,
+                              //                         onSelectedItemChanged:
+                              //                             (int index) {
+                              //                           _changedNumber = index;
+                              //                         },
+                              //                         children:
+                              //                             List<Widget>.generate(
+                              //                                 topics.length,
+                              //                                 (int idx) {
+                              //                           return Center(
+                              //                             child: new Text(
+                              //                                 topics[idx]),
+                              //                           );
+                              //                         }),
+                              //                       ),
+                              //                     ),
+                              //                     CupertinoButton(
+                              //                         child: Text("Ok"),
+                              //                         onPressed: () {
+                              //                           setState(() {
+                              //                             _selectedNumber =
+                              //                                 _changedNumber;
+                              //                             category = topics[
+                              //                                 _selectedNumber];
+                              //                           });
+                              //                           Navigator.pop(context);
+                              //                           print(category);
+                              //                         }),
+                              //                   ],
+                              //                 ),
+                              //               );
+                              //             });
+                              //       },
+                              //       child: Container(
+                              //         alignment: Alignment.center,
+                              //         height: 50.0,
+                              //         child: Row(
+                              //           mainAxisAlignment:
+                              //               MainAxisAlignment.spaceBetween,
+                              //           children: <Widget>[
+                              //             Row(
+                              //               children: <Widget>[
+                              //                 Container(
+                              //                   child: Row(
+                              //                     children: <Widget>[
+                              //                       Text(
+                              //                         " $category",
+                              //                         style: TextStyle(
+                              //                             color: Colors.grey,
+                              //                             fontWeight:
+                              //                                 FontWeight.bold,
+                              //                             fontSize: 15.0),
+                              //                       ),
+                              //                     ],
+                              //                   ),
+                              //                 )
+                              //               ],
+                              //             ),
+                              //             // Text(
+                              //             //   "  Change",
+                              //             //   style: TextStyle(
+                              //             //       color: Colors.teal,
+                              //             //       fontWeight: FontWeight.bold,
+                              //             //       fontSize: 15.0),
+                              //             // ),
+                              //           ],
+                              //         ),
+                              //       ),
+                              //       color: Colors.white,
+                              //     ),
+                              //   ],
+                              // ),
                               SizedBox(
                                 height: 10,
                               ),
@@ -578,9 +576,6 @@ class _AdminPageState extends State<AdminPage> {
     );
     _firebaseMessaging.requestNotificationPermissions(
         const IosNotificationSettings(sound: true, badge: true, alert: true));
-
-    
-    
   }
 
   int counter = 0;
@@ -596,15 +591,25 @@ class _AdminPageState extends State<AdminPage> {
           centerTitle: true,
           elevation: 0.7,
           leading: IconButton(
-            icon: Padding(
-              padding: const EdgeInsets.only(top: 22),
-              child: FaIcon(
-                FontAwesomeIcons.gopuram,
-                color: Colors.black,
-              ),
+            padding: EdgeInsets.only(top: 34),
+            icon: Image(
+              image: AssetImage('assets/drawericon.png'),
+              color: Colors.black,
+              height: 70,
+              width: 70,
             ),
             onPressed: () => _scaffoldKey.currentState.openDrawer(),
           ),
+          // leading: IconButton(
+          //   icon: Padding(
+          //     padding: const EdgeInsets.only(top: 22),
+          //     child: FaIcon(
+          //       FontAwesomeIcons.gopuram,
+          //       color: Colors.black,
+          //     ),
+          //   ),
+          //   onPressed: () => _scaffoldKey.currentState.openDrawer(),
+          // ),
           backgroundColor: Color(0xfffdfcfa),
           title: Padding(
             padding: const EdgeInsets.only(top: 34),
@@ -619,175 +624,171 @@ class _AdminPageState extends State<AdminPage> {
         ),
       ),
       drawer: Drawer(
-        child: ListView(
-          children:
-          <Widget>[
-            Container(
-              height: 75,
-              child: DrawerHeader(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text('Welcome ${widget._user.displayName}'),
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(widget._user.photoUrl),
-                    )
-                  ],
+        child: ListView(children: <Widget>[
+          Container(
+            height: 75,
+            child: DrawerHeader(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text('Welcome ${widget._user.displayName}'),
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(widget._user.photoUrl),
+                  )
+                ],
+              ),
+            ),
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.userPlus,
+              size: 23.0,
+            ),
+            title: Text('Add New Admin'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MakeAdmin(
+                    widget._user,
+                    widget._googleSignIn,
+                  ),
                 ),
-              ),
+              );
+            },
+          ),
+          Divider(
+            thickness: 0.5,
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.prayingHands,
+              size: 23.0,
             ),
-            ListTile(
-              leading: FaIcon(
-                FontAwesomeIcons.userPlus,
-                size: 23.0,
-              ),
-              title: Text('Add New Admin'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MakeAdmin(
-                      widget._user,
-                      widget._googleSignIn,
-                    ),
-                  ),
-                );
-              },
-            ),
-            Divider(
-              thickness: 0.5,
-            ),
-            ListTile(
-              leading: FaIcon(
-                FontAwesomeIcons.prayingHands,
-                size: 23.0,
-              ),
-              title: Text('View Daily Darshan'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Demo(
-                        //widget._user,
-                        //widget._googleSignIn,
-                        ),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              leading: FaIcon(
-                FontAwesomeIcons.cloudUploadAlt,
-                size: 23.0,
-              ),
-              title: Text('Upload Daily Darshan'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DailyDarshan(
-                        //widget._user,
-                        //widget._googleSignIn,
-                        ),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              leading: FaIcon(
-                FontAwesomeIcons.podcast,
-                size: 28.0,
-              ),
-              title: Text('View Audio'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AudioList(
-                      isAdmin: true,
+            title: Text('View Daily Darshan'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Demo(
                       //widget._user,
                       //widget._googleSignIn,
-                    ),
+                      ),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.cloudUploadAlt,
+              size: 23.0,
+            ),
+            title: Text('Upload Daily Darshan'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DailyDarshan(
+                      //widget._user,
+                      //widget._googleSignIn,
+                      ),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.podcast,
+              size: 28.0,
+            ),
+            title: Text('View Audio'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AudioList(
+                    isAdmin: true,
+                    //widget._user,
+                    //widget._googleSignIn,
                   ),
-                );
-              },
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.microphoneAlt,
+              size: 28.0,
             ),
-            ListTile(
-              leading: FaIcon(
-                FontAwesomeIcons.microphoneAlt,
-                size: 28.0,
-              ),
-              title: Text('Upload Audio'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddAudio(
-                        //widget._user,
-                        //widget._googleSignIn,
-                        ),
+            title: Text('Upload Audio'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddAudio(
+                      //widget._user,
+                      //widget._googleSignIn,
+                      ),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddVideo(
+                      //widget._user,
+                      //widget._googleSignIn,
+                      ),
+                ),
+              );
+            },
+            leading: FaIcon(
+              FontAwesomeIcons.youtube,
+              size: 23.0,
+            ),
+            title: Text('Add Video'),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VideosPage(
+                    isAdmin: true,
                   ),
-                );
-              },
+                ),
+              );
+            },
+            leading: FaIcon(
+              FontAwesomeIcons.video,
+              size: 23.0,
             ),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddVideo(
-                        //widget._user,
-                        //widget._googleSignIn,
-                        ),
-                  ),
-                );
-              },
-              leading: FaIcon(
-                FontAwesomeIcons.youtube,
-                size: 23.0,
-              ),
-              title: Text('Add Video'),
+            title: Text('Latest Video'),
+          ),
+          Divider(
+            thickness: 0.5,
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.signOutAlt,
+              size: 23.0,
             ),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => VideosPage(
-                      isAdmin: true,
-                        ),
-                  ),
-                );
-              },
-              leading: FaIcon(
-                FontAwesomeIcons.video,
-                size: 23.0,
-              ),
-              title: Text('Latest Video'),
-            ),
-            Divider(
-              thickness: 0.5,
-            ),
-            ListTile(
-              leading: FaIcon(
-                FontAwesomeIcons.signOutAlt,
-                size: 23.0,
-              ),
-              title: Text('Logout'),
-              onTap: () {
-                widget._googleSignIn.signOut();
-                Navigator.popUntil(
-                  context,
-                  ModalRoute.withName('home'),
-                );
-              },
-            ),
-            Divider(
-              thickness: 0.5,
-            ),
-          ] 
-        
-        ),
+            title: Text('Logout'),
+            onTap: () {
+              widget._googleSignIn.signOut();
+              Navigator.popUntil(
+                context,
+                ModalRoute.withName('home'),
+              );
+            },
+          ),
+          Divider(
+            thickness: 0.5,
+          ),
+        ]),
       ),
       body: Center(
         child: Container(

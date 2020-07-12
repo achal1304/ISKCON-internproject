@@ -59,7 +59,7 @@ class _WelcomeState extends State<Welcome> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image(
-              image: AssetImage('assets/logo.png'),
+              image: AssetImage('assets/iskconwhiteresize.png'),
               height: 200,
               width: 200,
             ),

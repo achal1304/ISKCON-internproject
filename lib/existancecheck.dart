@@ -64,7 +64,7 @@ class _ExistanceCheckState extends State<ExistanceCheck> {
                   textColor: Colors.white,
                   borderSide: BorderSide(color: Colors.white),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => Login(),
