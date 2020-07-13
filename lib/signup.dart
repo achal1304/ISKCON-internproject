@@ -119,7 +119,6 @@ class _SignupState extends State<Signup> {
 
   void onGoogleSignIn(BuildContext context) async {
     FirebaseUser user = await _handleSignIn();
-    print("user id obtained is " + user.uid);
     checkExist(user.uid).then((bool exist) {
       print(exist);
       if (exist == true) {

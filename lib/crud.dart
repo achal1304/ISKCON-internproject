@@ -56,7 +56,7 @@ class Crud {
         'progressPercent': "25%",
         'Gender': "",
         'Address': "Address",
-        'DOB': "",
+        'DOB': " ",
         'ARR': [true, false, false, false]
       });
       print("instance created");
@@ -84,7 +84,7 @@ class Crud {
         'progressPercent': "25%",
         'Gender': "",
         'Address': "Address",
-        'DOB': "",
+        'DOB': " ",
         'ARR': [true, false, false, false]
       });
       print("instance created");
